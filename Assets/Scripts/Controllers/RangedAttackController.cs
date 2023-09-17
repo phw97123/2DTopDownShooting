@@ -28,36 +28,54 @@ public class RangedAttackController : MonoBehaviour
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _trailRenderer = GetComponent<TrailRenderer>(); 
+        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
     {
-        if(!_isReady)
+        if (!_isReady)
         {
-            return; 
+            return;
         }
 
-        _currentDuration += Time.deltaTime; 
+        _currentDuration += Time.deltaTime;
 
         //현재 지속시간이 설정한 시간보다 크면 발사체 비활성화
-        if(_currentDuration >_attackData.duration)
+        if (_currentDuration > _attackData.duration)
         {
-            DestroyProjectile(transform.position, false); 
+            DestroyProjectile(transform.position, false);
         }
 
         //발사체를 주어진 방향과 속도로 움직이도록 설정
-        _rigidbody.velocity = _direction * _attackData.speed; 
+        _rigidbody.velocity = _direction * _attackData.speed;
     }
 
     //현재 오브젝트와 다른 레이어 간의 충돌 검사
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //levelCollisionLayer에 정의된 레이어와 충돌한 객체의 레이어가 동일하다면 
-        if(levelCollisionLayer.value == (levelCollisionLayer.value | (1<<collision.gameObject.layer)))
+        if (levelCollisionLayer.value == (levelCollisionLayer.value | (1 << collision.gameObject.layer)))
         {
+            DestroyProjectile(collision.ClosestPoint(transform.position) - _direction * .2f, fxOnDestroy);
+        }
+        else if (_attackData.target.value == (_attackData.target.value | (1 << collision.gameObject.layer)))
+        {
+            HealthSystem healthSystem = collision.GetComponent<HealthSystem>(); 
+            if(healthSystem != null)
+            {
+                healthSystem.ChangeHealth(-_attackData.power); 
+                if(_attackData.isOnKnockback)
+                {
+                    TopDownMovement movement = collision.GetComponent<TopDownMovement>(); 
+                    if(movement != null)
+                    {
+                        movement.ApplyKnockback(transform, _attackData.knockbackPower, _attackData.knockbackTime); 
+                    }
+                }
+            }
             DestroyProjectile(collision.ClosestPoint(transform.position) - _direction * .2f, fxOnDestroy); 
         }
+
     }
 
     //오브젝트 초기화
@@ -68,8 +86,8 @@ public class RangedAttackController : MonoBehaviour
         _attackData = attackData;
         _direction = direction;
 
-        UpdateProjectileSprite(); 
-        
+        UpdateProjectileSprite();
+
         //발사체의 궤적을 나타내는 TrailRenderer를 초기화하고 그려진 트레일 제거
         _trailRenderer.Clear();
 
@@ -84,7 +102,7 @@ public class RangedAttackController : MonoBehaviour
         transform.right = _direction;
 
         //발사체가 준비된 상태
-        _isReady = true; 
+        _isReady = true;
     }
 
     //발사체 스프라이트 업데이트
@@ -96,11 +114,11 @@ public class RangedAttackController : MonoBehaviour
 
     private void DestroyProjectile(Vector3 position, bool createFx)
     {
-        if(createFx)
+        if (createFx)
         {
             //발사체 파괴 시 효과 생성 
         }
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
     }
 
 }
