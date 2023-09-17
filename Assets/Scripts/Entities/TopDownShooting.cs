@@ -14,8 +14,9 @@ public class TopDownShooting : MonoBehaviour
     private TopDownCharacterController _controller;
 
     [SerializeField] private Transform projectileSpawnPosition;
-    private Vector2 _aimDirection = Vector2.right;    
+    private Vector2 _aimDirection = Vector2.right;
 
+    public AudioClip shootingClip;
     private void Awake()
     {
         _controller = GetComponent<TopDownCharacterController>();
@@ -68,6 +69,10 @@ public class TopDownShooting : MonoBehaviour
             RotateVector2(_aimDirection,angle),   //회전각
             rangedAttackData                      //공격 정보
             );
+
+        if (shootingClip)
+            SoundManager.PlayClip(shootingClip); 
+
     }
 
     //발사체의 회전각을 계산
