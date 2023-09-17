@@ -117,6 +117,7 @@ public class RangedAttackController : MonoBehaviour
         if (createFx)
         {
             //발사체 파괴 시 효과 생성 
+            _projectileManager.CreateImpactParticlesAtPostion(position, _attackData); 
         }
         gameObject.SetActive(false);
     }
