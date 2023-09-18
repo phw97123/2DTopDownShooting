@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
+//캐릭터가 사망할 때 특정 동작을 수행하도록 하는 클래스
 public class DisappearOnDeath : MonoBehaviour
 {
     private HealthSystem _healthSystem;
@@ -36,7 +37,7 @@ public class DisappearOnDeath : MonoBehaviour
             //사용하는 스크립트들을 끈다
             component.enabled = false;
         }
-
+        //2초후에 파괴
         Destroy(gameObject, 2f);
     }
 }

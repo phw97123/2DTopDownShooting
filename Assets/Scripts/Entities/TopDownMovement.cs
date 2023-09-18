@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//캐릭터의 움직임과 넉백을 관리하는 클래스
 public class TopDownMovement : MonoBehaviour
 {
     private TopDownCharacterController _controller;
@@ -10,8 +11,8 @@ public class TopDownMovement : MonoBehaviour
     private Vector2 _movementDirection = Vector2.zero; 
     private Rigidbody2D _rigidbody;
 
-    private Vector2 _knockback = Vector2.zero;
-    private float knockbackDuration = 0.0f; 
+    private Vector2 _knockback = Vector2.zero; //넉백 방향과 세기
+    private float knockbackDuration = 0.0f; //넉백 지속시간
     private void Awake()
     {
         _controller = GetComponent<TopDownCharacterController>();
@@ -28,6 +29,7 @@ public class TopDownMovement : MonoBehaviour
         ApplyMovement(_movementDirection); 
         if(knockbackDuration >0.0f)
         {
+            //넉백 지속시간 줄임
             knockbackDuration -= Time.fixedDeltaTime; 
         }
     }
@@ -38,7 +40,10 @@ public class TopDownMovement : MonoBehaviour
 
     public void ApplyKnockback(Transform other, float power, float duration)
     {
-        knockbackDuration = duration;
+        //넉백 지속시간 설정
+        knockbackDuration = duration; 
+        
+        //넉백 방향과 세기 설정
         _knockback = -(other.position - transform.position).normalized * power; 
     }
 
@@ -46,7 +51,8 @@ public class TopDownMovement : MonoBehaviour
     {
         direction = direction * _stats.CurrentStats.speed;
 
-        if(knockbackDuration >0.0f)
+        // 넉백 중일 경우, 넉백 방향과 세기를 움직임 방향에 추가
+        if (knockbackDuration >0.0f)
         {
             direction += _knockback; 
         }

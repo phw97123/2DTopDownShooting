@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
+
+//캐릭터의 애니메이션을 구체적으로 관리 
 public class TopDownAnimationController : TopDownAnimations
 {
     //StringToHash : 특정 문자열을 숫자값(해시값)으로 변환 

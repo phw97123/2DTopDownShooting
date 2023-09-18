@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//사거리 공격을 수행하는 몬스터 클래스 
 public class TopDownRangeEnemyController : TopDownEnemyController
 {
+    //추적하는 거리 
     [SerializeField] private float followRange = 15f;
+
+    //공격 가능한 거리
     [SerializeField] private float shootRange = 10f;
 
     protected override void FixedUpdate()
@@ -16,9 +20,9 @@ public class TopDownRangeEnemyController : TopDownEnemyController
         Vector2 direction = DirectionToTarget();
 
         IsAttacking = false; 
-        if(distance <= followRange) //따라가는 거리보다 작다면
+        if(distance <= followRange) //대상을 추적하는 거리 범위 내에 있는 경우
         {
-            if(distance <= shootRange) //공격 거리보다 작으면 
+            if(distance <= shootRange) //공격 가능한 사거리 내에 있는 경우
             {
                 int layerMaskTarget = Stats.CurrentStats.attackSO.target;
 

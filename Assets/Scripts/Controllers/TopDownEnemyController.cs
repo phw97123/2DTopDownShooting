@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//몬스터의 기본 제어와 동작을 관리
 public class TopDownEnemyController : TopDownCharacterController
 {
-    GameManager gameManager; 
-    
-    //가까운 오브젝트
+    GameManager gameManager;
+
+    // 적 캐릭터가 추적하고 있는 가장 가까운 대상
     protected Transform ClosestTarget { get; private set;  }
 
     protected override void Awake()

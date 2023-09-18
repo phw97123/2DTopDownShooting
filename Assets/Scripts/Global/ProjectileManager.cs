@@ -38,13 +38,24 @@ public class ProjectileManager : MonoBehaviour
         obj.SetActive(true); 
     }
 
+    //지정된 위치에 공격 이펙트 파티클을 생성하는 함수
     public void CreateImpactParticlesAtPostion(Vector3 position, RangedAttackData attackData)
     {
+        //파티클 시스템의 위치를 지정된 위치로 설정
         _impactParticleSystem.transform.position = position;
+
+        //파티클 시스템의 발사 모듈을 가져옴
         ParticleSystem.EmissionModule em = _impactParticleSystem.emission;
+
+        //파티클의 발사 량을 설정 공격 데이터의 크기에 따라 파티클 수를 조정
         em.SetBurst(0, new ParticleSystem.Burst(0, Mathf.Ceil(attackData.size * 5)));
+
+        //파티클 시스템의 주요 모듈을 가져옴
         ParticleSystem.MainModule mainModule = _impactParticleSystem.main;
+
+        //파티클의 초기 속도를 설정합니다. 공격 데이터의 크기에 따라 속도를 조정
         mainModule.startSpeedMultiplier = attackData.size * 10f;
+
         _impactParticleSystem.Play(); 
     }
 

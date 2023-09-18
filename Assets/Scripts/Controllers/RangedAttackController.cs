@@ -58,13 +58,15 @@ public class RangedAttackController : MonoBehaviour
         {
             DestroyProjectile(collision.ClosestPoint(transform.position) - _direction * .2f, fxOnDestroy);
         }
+        //공격할 대상의 레이어와 충돌한 경우 
         else if (_attackData.target.value == (_attackData.target.value | (1 << collision.gameObject.layer)))
         {
             HealthSystem healthSystem = collision.GetComponent<HealthSystem>(); 
             if(healthSystem != null)
             {
+                //충돌한 객체의 체력을 감소
                 healthSystem.ChangeHealth(-_attackData.power); 
-                if(_attackData.isOnKnockback)
+                if(_attackData.isOnKnockback) //넉백이 true인 경우
                 {
                     TopDownMovement movement = collision.GetComponent<TopDownMovement>(); 
                     if(movement != null)
@@ -73,6 +75,7 @@ public class RangedAttackController : MonoBehaviour
                     }
                 }
             }
+            //충돌한 객체 파괴후 이펙트 생성
             DestroyProjectile(collision.ClosestPoint(transform.position) - _direction * .2f, fxOnDestroy); 
         }
 

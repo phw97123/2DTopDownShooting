@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
+//게임의 핵심 로직을 관리하고 게임의 진행, 웨이브 관리, 플레이어 상태, 로직의 업그레이드 및 보상생성등을 관리  
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -19,19 +20,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverUI;
 
     [SerializeField] private int currentWaveIndex = 0;
-    private int currentSpawnCount = 0;
-    private int waveSpawnCount = 0;
-    private int waveSpawnPosCount = 0;
+    private int currentSpawnCount = 0; //현재 스폰된 적의 수 
+    private int waveSpawnCount = 0; // 웨이브당 스폰되는 적의 수 
+    private int waveSpawnPosCount = 0; //웨이브당 스폰 위치의 수 
 
-    public float spawnInterval = .5f;
-    public List<GameObject> enemyPrefebs = new List<GameObject>();
+    public float spawnInterval = .5f; // 스폰 간격
+    public List<GameObject> enemyPrefebs = new List<GameObject>();//적 프리팹 목록
 
-    [SerializeField] private Transform spawnPositionsRoot;
-    private List<Transform> spawnPostions = new List<Transform>();
+    [SerializeField] private Transform spawnPositionsRoot; // 적 스폰 위치를 가지고 있는 부모 위치
+    private List<Transform> spawnPostions = new List<Transform>(); //적 스폰 위치 목록
 
+    //보상 아이템 목록
     public List<GameObject> rewards = new List<GameObject>();
 
+    //기본 스탯
     [SerializeField] private CharacterStats defaultStats;
+
+    //원거리 스탯
     [SerializeField] private CharacterStats rangedStats;
 
 
@@ -47,6 +52,7 @@ public class GameManager : MonoBehaviour
 
         gameOverUI.SetActive(false);
 
+        //스폰 위치를 리스트에 추가
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)
         {
             spawnPostions.Add(spawnPositionsRoot.GetChild(i));
@@ -55,21 +61,27 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpgradeStatInit(); 
+        //업그레이드 스탯 초기화 
+        UpgradeStatInit();
+        //다음 웨이브 시작을 위한 코루틴 시작
         StartCoroutine("StartNextWave");
     }
 
+    //다음 웨이브 시작
     IEnumerator StartNextWave()
     {
         while (true)
         {
             if (currentSpawnCount == 0)
             {
+                //WaveUI 업데이트
                 UpdateWaveUI();
+                //2초대기
                 yield return new WaitForSeconds(2f);
 
                 if (currentWaveIndex % 20 == 0)
                 {
+                    // 무작위 업그레이드 적용
                     RandomUpgrade();
                 }
 
@@ -112,6 +124,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //적이 사망하면 스폰된 적 수를 줄임
     private void OnEnemyDeath()
     {
         currentSpawnCount--; 
@@ -120,14 +133,18 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         gameOverUI.SetActive(true);
+
+        //모든 코루틴 중지
         StopAllCoroutines(); 
     }
 
+    //healthBar 업데이트
     private void UpdateHealthUI()
     {
         hpGaugeSlider.value = playerHealthSystem.CurrentHealth / playerHealthSystem.MaxHealth; 
     }
 
+    //wave 텍스트 업데이트
     private void UpdateWaveUI()
     {
         waveText.text = (currentWaveIndex + 1).ToString(); 
