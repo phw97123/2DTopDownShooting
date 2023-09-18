@@ -9173,6 +9173,20 @@ MonoBehaviour:
   - {fileID: 2417930570620088489, guid: bd5eb58ec356db54a86321fc6c9de1d7, type: 3}
   - {fileID: 3170807488679882146, guid: 0dbd4aa5afcb7914a88f69f82bccf66f, type: 3}
   spawnPositionsRoot: {fileID: 937477405}
+  rewards:
+  - {fileID: 3587870920853908777, guid: 742214f0c2cf1114c8bc70a46a73acf1, type: 3}
+  - {fileID: 4938011871990202628, guid: 60968a2d23c4fd548849eb1b39062b28, type: 3}
+  - {fileID: 6860401355562867036, guid: e6cd8e9b25dd35741ad652d433c0edbc, type: 3}
+  defaultStats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 11400000, guid: 164c09a601c92ca44a9055c4b24c37c6, type: 2}
+  rangedStats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 11400000, guid: 182ce79403c9bce47bbb6770c6f6d177, type: 2}
 --- !u!1 &1456251473
 GameObject:
   m_ObjectHideFlags: 0
