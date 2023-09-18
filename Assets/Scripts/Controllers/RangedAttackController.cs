@@ -124,5 +124,4 @@ public class RangedAttackController : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-
 }

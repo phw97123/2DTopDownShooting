@@ -13,11 +13,14 @@ public class GameManager : MonoBehaviour
 
     public Transform Player { get; private set;  }
     [SerializeField] private string playerTag = "Player";
-    private HealthSystem playerHealthSystem; 
+    private HealthSystem playerHealthSystem;
+    private PlayerData playerData; 
 
     [SerializeField] private TextMeshProUGUI waveText; 
     [SerializeField] private Slider hpGaugeSlider;
     [SerializeField] private GameObject gameOverUI;
+
+    private CharacterMenuUI characterMenuUI;
 
     [SerializeField] private int currentWaveIndex = 0;
     private int currentSpawnCount = 0; //현재 스폰된 적의 수 
@@ -50,7 +53,11 @@ public class GameManager : MonoBehaviour
         playerHealthSystem.OnHeal += UpdateHealthUI;
         playerHealthSystem.OnDeath += GameOver;
 
+        playerData = Player.GetComponent<PlayerData>(); 
+
         gameOverUI.SetActive(false);
+        characterMenuUI = UIManager.instance.GetUIComponent<CharacterMenuUI>();
+        characterMenuUI.gameObject.SetActive(false); 
 
         //스폰 위치를 리스트에 추가
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)
@@ -63,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         //업그레이드 스탯 초기화 
         UpgradeStatInit();
+        UpdateCharacterInfo();
         //다음 웨이브 시작을 위한 코루틴 시작
         StartCoroutine("StartNextWave");
     }
@@ -101,7 +109,6 @@ public class GameManager : MonoBehaviour
                     waveSpawnCount += 1;
                 }
 
-
                 for (int i = 0; i < waveSpawnPosCount; i++)
                 {
                     int posIdx = Random.Range(0, spawnPostions.Count);
@@ -130,6 +137,7 @@ public class GameManager : MonoBehaviour
         currentSpawnCount--; 
     }
 
+//--------------------------------------------------------------------------------------
     private void GameOver()
     {
         gameOverUI.SetActive(true);
@@ -149,6 +157,18 @@ public class GameManager : MonoBehaviour
     {
         waveText.text = (currentWaveIndex + 1).ToString(); 
     }
+
+    public void DisplayMenu(bool isMenu)
+    {
+        characterMenuUI.gameObject.SetActive(isMenu); 
+    }
+
+    private void UpdateCharacterInfo()
+    {
+        characterMenuUI.SetCharacterInfo(playerData.playerName, "궁수", playerData.level, "원거리 공격을 한다.", playerData.experience);
+    }
+
+    //--------------------------------------------------------------------------------------
 
     public void RestartGame()
     {
@@ -207,6 +227,5 @@ public class GameManager : MonoBehaviour
             default: 
                 break; 
         }
-
     }
 }
