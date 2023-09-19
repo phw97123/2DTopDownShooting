@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Transform Player { get; private set;  }
     [SerializeField] private string playerTag = "Player";
     private HealthSystem playerHealthSystem;
+    private CharacterStatsHandler playerurentStats; 
     private PlayerData playerData; 
 
     [SerializeField] private TextMeshProUGUI waveText; 
@@ -53,7 +54,8 @@ public class GameManager : MonoBehaviour
         playerHealthSystem.OnHeal += UpdateHealthUI;
         playerHealthSystem.OnDeath += GameOver;
 
-        playerData = Player.GetComponent<PlayerData>(); 
+        playerData = Player.GetComponent<PlayerData>();
+        playerurentStats = Player.GetComponent<CharacterStatsHandler>(); 
 
         gameOverUI.SetActive(false);
         characterMenuUI = UIManager.instance.GetUIComponent<CharacterMenuUI>();
@@ -71,8 +73,14 @@ public class GameManager : MonoBehaviour
         //업그레이드 스탯 초기화 
         UpgradeStatInit();
         UpdateCharacterInfo();
+       
         //다음 웨이브 시작을 위한 코루틴 시작
         StartCoroutine("StartNextWave");
+    }
+
+    private void Update()
+    {
+        UpdateAbility();
     }
 
     //다음 웨이브 시작
@@ -166,6 +174,13 @@ public class GameManager : MonoBehaviour
     private void UpdateCharacterInfo()
     {
         characterMenuUI.SetCharacterInfo(playerData.playerName, "궁수", playerData.level, "원거리 공격을 한다.", playerData.experience);
+    }
+
+    private void UpdateAbility()
+    {
+        RangedAttackData curentPlayerAttacks = (RangedAttackData)playerurentStats.CurrentStats.attackSO;
+
+        characterMenuUI.SetAbility((int)playerHealthSystem.MaxHealth, (int)curentPlayerAttacks.power, curentPlayerAttacks.numberOfProjectilesPershot, (int)curentPlayerAttacks.speed); 
     }
 
     //--------------------------------------------------------------------------------------

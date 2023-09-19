@@ -8,20 +8,27 @@ public class CharacterMenuUI : MonoBehaviour
 {
     //BtnPanel
     [SerializeField] private Button infoBtn;
-    [SerializeField] private Button statusBtn;
+    [SerializeField] private Button abilityBtn;
     [SerializeField] private Button inventoryBtn;
 
     //InfoPanel
-    [SerializeField] private GameObject InfoPanel; 
+    [SerializeField] private GameObject infoPanel; 
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private TMP_Text jopText;
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Slider levelSlider;
 
+    //AbilityPanel 
+    [SerializeField] private GameObject abilityPanel;
+    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private TMP_Text powerText;
+    [SerializeField] private TMP_Text ProjectileCountText;
+    [SerializeField] private TMP_Text SpeedText; 
+
     private void Awake()
     {
-        InfoPanel.SetActive(false); 
+        abilityPanel.SetActive(false); 
     }
     private void Start()
     {
@@ -29,11 +36,17 @@ public class CharacterMenuUI : MonoBehaviour
         {
             infoBtn.onClick.AddListener(DisplayInfo); 
         }
+
+        if(infoBtn != null )
+        {
+            abilityBtn.onClick.AddListener(DisplayAbility);
+        }
     }
 
     private void DisplayInfo()
     {
-        InfoPanel.SetActive(true); 
+        infoPanel.SetActive(true);
+        abilityPanel.SetActive(false);
     }
 
     public void SetCharacterInfo(string playerName, string job, int level, string description, float exp)
@@ -44,5 +57,19 @@ public class CharacterMenuUI : MonoBehaviour
         descriptionText.text = description;
 
         levelSlider.value = exp / 100f;
+    }
+
+    private void DisplayAbility()
+    {
+        abilityPanel.SetActive(true);
+        infoPanel.SetActive(false);
+    }
+
+    public void SetAbility(int hp, int power, int projectileCount, int speed)
+    {
+        hpText.text = hp.ToString();
+        powerText.text = power.ToString();
+        ProjectileCountText.text = projectileCount.ToString();
+        SpeedText.text = speed.ToString(); 
     }
 }
