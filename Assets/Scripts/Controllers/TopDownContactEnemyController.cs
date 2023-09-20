@@ -98,7 +98,7 @@ public class TopDownContactEnemyController : TopDownEnemyController
         _isCollidingWithTarget = false;
     }
 
-    //대상에게 ㄷ미지를 입히고 넉백을 적용하는 메서드
+    //대상에게 데미지를 입히고 넉백을 적용하는 메서드
     private void ApplyHealthChange()
     {
         AttackSO attackSO = Stats.CurrentStats.attackSO;

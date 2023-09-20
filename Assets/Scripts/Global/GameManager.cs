@@ -166,16 +166,19 @@ public class GameManager : MonoBehaviour
         waveText.text = (currentWaveIndex + 1).ToString(); 
     }
 
+    //메뉴화면
     public void DisplayMenu(bool isMenu)
     {
         characterMenuUI.gameObject.SetActive(isMenu); 
     }
 
+    //캐릭터 정보 업데이트
     private void UpdateCharacterInfo()
     {
         characterMenuUI.SetCharacterInfo(playerData.playerName, "궁수", playerData.level, "원거리 공격을 한다.", playerData.experience);
     }
 
+    //캐릭터 능력치 업데이트
     private void UpdateAbility()
     {
         RangedAttackData curentPlayerAttacks = (RangedAttackData)playerurentStats.CurrentStats.attackSO;

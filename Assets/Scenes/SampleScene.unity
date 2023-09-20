@@ -1414,7 +1414,7 @@ Transform:
   - {fileID: 826588758}
   - {fileID: 937477405}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447614461
 GameObject:
@@ -1741,12 +1741,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506611672}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0149257, y: 0.7317002, z: -11.453103}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1370381507}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &506611674
 MonoBehaviour:
@@ -1881,7 +1881,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &611152174
 GameObject:
@@ -8318,7 +8318,7 @@ Transform:
   - {fileID: 1683871022}
   - {fileID: 1011209916}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1044576981
 MonoBehaviour:
@@ -8534,9 +8534,9 @@ MonoBehaviour:
   playerName: Player
   jop: "\uAD81\uC218"
   level: 1
-  experience: 0
+  experience: 30
   description: "\uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744 \uD55C\uB2E4."
-  gold: 0
+  gold: 1000
 --- !u!1 &1048612655
 GameObject:
   m_ObjectHideFlags: 0
@@ -8710,7 +8710,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1121505142
 GameObject:
@@ -9211,8 +9211,9 @@ Transform:
   m_Children:
   - {fileID: 281845696}
   - {fileID: 696313819}
+  - {fileID: 506611673}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1370381508
 MonoBehaviour:
@@ -10875,6 +10876,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createDustOnWalk: 1
   dustParticleSystem: {fileID: 1011209914}
+--- !u!1001 &1769204988
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401489648626895188, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348949199852673611, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
+      propertyPath: m_Name
+      value: WindArrow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}
 --- !u!1 &1792419003
 GameObject:
   m_ObjectHideFlags: 0
@@ -15994,7 +16056,7 @@ RectTransform:
   - {fileID: 905391438}
   - {fileID: 375878138}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

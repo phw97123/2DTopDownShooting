@@ -56,19 +56,11 @@ public class PlayerInputController : TopDownCharacterController
         }
     }
 
+    //메뉴 입력
     public void OnMenu(InputValue value)
     {
-        if (isMenu)
-        {
-            isMenu = false;
-            GameManager.instance.DisplayMenu(false);
-            Time.timeScale = 1; 
-        }
-        else
-        {
-            isMenu = true;
-            GameManager.instance.DisplayMenu(true);
-            Time.timeScale = 0;
-        }
+        isMenu = !isMenu;
+        GameManager.instance.DisplayMenu(isMenu);
+        Time.timeScale = isMenu ? 0 : 1;
     }
 }
