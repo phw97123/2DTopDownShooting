@@ -58,5 +58,4 @@ public class ProjectileManager : MonoBehaviour
 
         _impactParticleSystem.Play(); 
     }
-
 }

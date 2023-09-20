@@ -24,15 +24,21 @@ public class CharacterMenuUI : MonoBehaviour
     [SerializeField] private GameObject abilityPanel;
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text powerText;
-    [SerializeField] private TMP_Text ProjectileCountText;
+    [SerializeField] private TMP_Text projectileCountText;
     [SerializeField] private TMP_Text SpeedText;
 
-    [SerializeField] private GameObject InventoryPanel; 
+    [SerializeField] private GameObject inventoryPanel;
 
+    [SerializeField] private GameObject isEquipPanel;
+    [SerializeField] private Button cancelBtn;
+    [SerializeField] private Button confirmBtn;
+    [SerializeField] private TextMeshProUGUI isEquipText; 
+    
     private void Awake()
     {
         abilityPanel.SetActive(false);
-        InventoryPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+        isEquipPanel.SetActive(false);
     }
 
     private void Start()
@@ -52,6 +58,15 @@ public class CharacterMenuUI : MonoBehaviour
             inventoryBtn.onClick.AddListener(DisplayInventory);
         }
 
+        if (infoBtn != null)
+        {
+            cancelBtn.onClick.AddListener(OffIsEquipPanel);
+        }
+
+        if (infoBtn != null)
+        {
+            confirmBtn.onClick.AddListener(OnConfirmButton);
+        }
     }
 
     //캐릭터 정보 패널 
@@ -59,7 +74,7 @@ public class CharacterMenuUI : MonoBehaviour
     {
         infoPanel.SetActive(true);
         abilityPanel.SetActive(false);
-        InventoryPanel.SetActive(false); 
+        inventoryPanel.SetActive(false); 
     }
 
     //캐릭터 정보 입력받을 함수
@@ -77,7 +92,7 @@ public class CharacterMenuUI : MonoBehaviour
     private void DisplayAbility()
     {
         abilityPanel.SetActive(true);
-        InventoryPanel.SetActive(false); 
+        inventoryPanel.SetActive(false); 
         infoPanel.SetActive(false);
     }
 
@@ -86,16 +101,46 @@ public class CharacterMenuUI : MonoBehaviour
     {
         hpText.text = hp.ToString();
         powerText.text = power.ToString();
-        ProjectileCountText.text = projectileCount.ToString();
+        projectileCountText.text = projectileCount.ToString();
         SpeedText.text = speed.ToString(); 
+
+
     }
 
     private void DisplayInventory()
     {
         abilityPanel.SetActive(false);
-        InventoryPanel.SetActive(true);
+        inventoryPanel.SetActive(true);
         infoPanel.SetActive(false);
     }
 
+    public void OnIsEquipPanel()
+    {
+        isEquipPanel.SetActive(true); 
+    }
 
+    public void OnConfirmButton()
+    {
+        if(Inventory.instance != null)
+        {
+            Inventory.instance.OnConfirmButtonPressed?.Invoke(); 
+        }
+
+        OffIsEquipPanel(); 
+    }
+
+    private void OffIsEquipPanel()
+    {
+        isEquipPanel.SetActive(false);
+    }
+
+    public void SetIsEquipText(bool isEquip)
+    {
+        if(!isEquip)
+        {
+            isEquipText.text = "장착 하시겠습니까 ?"; 
+        }
+        else
+            isEquipText.text = "장착을 해제 하시겠습니까 ?";
+    }
 }

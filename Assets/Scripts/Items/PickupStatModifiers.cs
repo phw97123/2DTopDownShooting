@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -7,15 +8,18 @@ using UnityEngine;
 public class PickupStatModifiers : PickupItem
 {
     // 아이템이 주워졌을 때 적용할 스탯 수정 목록
-    [SerializeField] private List<CharacterStats> statsModifier; 
+    [SerializeField] private List<CharacterStats> statsModifier;
     protected override void OnPickedUp(GameObject receiver)
     {
         CharacterStatsHandler statsHandler = receiver.GetComponent<CharacterStatsHandler>();
-
-        // 스탯 수정 목록에 있는 각각의 스탯 수정을 적용
         foreach (CharacterStats stat in statsModifier)
         {
-            statsHandler.AddStatModifier(stat); 
+            if (item == null)
+                statsHandler.AddStatModifier(stat);
+            else
+                Inventory.instance.AddItem(item, stat);
+
         }
+
     }
 }
