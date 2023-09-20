@@ -10,8 +10,8 @@ public class ItemSlotUI : MonoBehaviour
     public Button button;
     public Image icon;
     public Image equipImag; 
-    private ItemSlot slot;
-    private ItemSlot curSlot; 
+    public ItemSlot slot;
+    public ItemSlot curSlot; 
     private Outline outline;
 
     private CharacterStats statsModifier; 
@@ -23,6 +23,8 @@ public class ItemSlotUI : MonoBehaviour
     {
         outline = GetComponent<Outline>();
         equipImag.gameObject.SetActive(false);
+        slot = new ItemSlot();
+        curSlot = new ItemSlot();
     }
 
     private void OnEnable()

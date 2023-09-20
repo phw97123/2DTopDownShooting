@@ -15,7 +15,7 @@ public class PlayerInputController : TopDownCharacterController
         base.Awake();
         _camera = Camera.main;
 
-        isMenu = false;
+        isMenu = true;
     }
 
     public void OnMove(InputValue value)

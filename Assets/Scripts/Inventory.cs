@@ -66,7 +66,6 @@ public class Inventory : MonoBehaviour
             emptySlot.statsModifier = statsModifier; 
             UpdateUI();
         }
-
     }
 
     ItemSlot GetEmptySlot()

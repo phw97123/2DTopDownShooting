@@ -59,7 +59,9 @@ public class GameManager : MonoBehaviour
 
         gameOverUI.SetActive(false);
         characterMenuUI = UIManager.instance.GetUIComponent<CharacterMenuUI>();
-        characterMenuUI.gameObject.SetActive(false); 
+        characterMenuUI.gameObject.SetActive(true);
+
+        Time.timeScale = 0; 
 
         //스폰 위치를 리스트에 추가
         for (int i = 0; i < spawnPositionsRoot.childCount; i++)

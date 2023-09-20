@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556ebe6376c1e994a9403b090320261b, type: 3}
   m_Name: IceArrow_ItemData
   m_EditorClassIdentifier: 
-  displayName: "\uC5BC\uC74C \uD654\uC0B4"
+  displayName: IceArrow
   description: "\uACF5\uACA9\uB825 +5"
   type: 0
   sprite: {fileID: 957005929, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
