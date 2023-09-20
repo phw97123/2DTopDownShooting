@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
     {
         RangedAttackData curentPlayerAttacks = (RangedAttackData)playerurentStats.CurrentStats.attackSO;
 
-        characterMenuUI.SetAbility((int)playerHealthSystem.MaxHealth, (int)curentPlayerAttacks.power, curentPlayerAttacks.numberOfProjectilesPershot, (int)curentPlayerAttacks.speed); 
+        characterMenuUI.SetAbility((int)playerHealthSystem.MaxHealth, (int)curentPlayerAttacks.power, curentPlayerAttacks.numberOfProjectilesPershot, (int)playerurentStats.CurrentStats.speed, (int)curentPlayerAttacks.speed); 
     }
 
     //--------------------------------------------------------------------------------------

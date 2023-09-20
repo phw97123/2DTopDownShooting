@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IceArrow_ItemData
   m_EditorClassIdentifier: 
   displayName: IceArrow
-  description: "\uACF5\uACA9\uB825 +5"
+  description: "\uACF5\uACA9\uB825 + 3"
   type: 0
   sprite: {fileID: 957005929, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   prefab: {fileID: 2500551217865236087, guid: c25509d16e2444e4a9460e22c368f2ed, type: 3}

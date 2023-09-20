@@ -15,12 +15,12 @@ MonoBehaviour:
   size: 1
   delay: 0.15
   power: 3
-  speed: 10
+  speed: 30
   target:
     serializedVersion: 2
     m_Bits: 64
   isOnKnockback: 1
-  knockbackPower: 15
+  knockbackPower: 5
   knockbackTime: 0.1
   bulletNameTag: Arrow
   duration: 5

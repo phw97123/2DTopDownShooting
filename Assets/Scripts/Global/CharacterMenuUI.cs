@@ -25,8 +25,11 @@ public class CharacterMenuUI : MonoBehaviour
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text powerText;
     [SerializeField] private TMP_Text projectileCountText;
-    [SerializeField] private TMP_Text SpeedText;
+    [SerializeField] private TMP_Text speedText;
+    [SerializeField] private TMP_Text projectileSpeedText;
 
+
+    //Inventory 
     [SerializeField] private GameObject inventoryPanel;
 
     [SerializeField] private GameObject isEquipPanel;
@@ -97,13 +100,13 @@ public class CharacterMenuUI : MonoBehaviour
     }
 
     //능력치 정보 입력받을 함수
-    public void SetAbility(int hp, int power, int projectileCount, int speed)
+    public void SetAbility(int hp, int power, int projectileCount, int speed, int projectileSpeed)
     {
         hpText.text = hp.ToString();
         powerText.text = power.ToString();
         projectileCountText.text = projectileCount.ToString();
-        SpeedText.text = speed.ToString(); 
-
+        speedText.text = speed.ToString();
+        projectileSpeedText.text = projectileSpeed.ToString(); 
 
     }
 
