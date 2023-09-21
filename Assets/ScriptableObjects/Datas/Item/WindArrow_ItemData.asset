@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindArrow_ItemData
   m_EditorClassIdentifier: 
   displayName: WindArrow
-  description: "\uC774\uB3D9\uC18D\uB3C4 + 3"
+  description: Movement Speed + 3
   type: 0
   sprite: {fileID: -1720042186, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   prefab: {fileID: 7348949199852673611, guid: 69c2062d7e8420a42a6489902dd82d4e, type: 3}

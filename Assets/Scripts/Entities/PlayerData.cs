@@ -5,12 +5,12 @@ using UnityEngine.U2D;
 
 public class PlayerData : MonoBehaviour
 {
-    public string playerName = "Player";
-    public string jop = "궁수"; 
-    public int level = 1;
-    public int experience = 0;
-    public string description = "원거리 공격을 한다."; 
-    public int gold = 0; 
+    public string playerName;
+    public string jop; 
+    public int level;
+    public int experience;
+    public string description; 
+    public int gold; 
 
     public void GainExperience(int amount)
     {

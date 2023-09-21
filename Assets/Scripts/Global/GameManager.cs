@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     private List<Transform> spawnPostions = new List<Transform>(); //적 스폰 위치 목록
 
     //보상 아이템 목록
-    public List<GameObject> rewards = new List<GameObject>();
+    public List<GameObject> rewards = new List<GameObject>(); 
+    public List<GameObject> equipRewards = new List<GameObject>();
 
     //기본 스탯
     [SerializeField] private CharacterStats defaultStats;
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
                 {
                     waveSpawnPosCount = waveSpawnPosCount + 1 > spawnPostions.Count ? waveSpawnPosCount : waveSpawnPosCount + 1;
                     waveSpawnCount = 0;
+                    CreateEquipReward(); 
                 }
 
                 if (currentWaveIndex % 5 == 0)
@@ -147,13 +149,11 @@ public class GameManager : MonoBehaviour
         currentSpawnCount--; 
     }
 
-//--------------------------------------------------------------------------------------
     private void GameOver()
     {
+        Time.timeScale = 0;
+        StopAllCoroutines();
         gameOverUI.SetActive(true);
-
-        //모든 코루틴 중지
-        StopAllCoroutines(); 
     }
 
     //healthBar 업데이트
@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
     //캐릭터 정보 업데이트
     private void UpdateCharacterInfo()
     {
-        characterMenuUI.SetCharacterInfo(playerData.playerName, "궁수", playerData.level, "원거리 공격을 한다.", playerData.experience);
+        characterMenuUI.SetCharacterInfo(playerData.playerName, playerData.jop, playerData.level, playerData.description, playerData.experience);
     }
 
     //캐릭터 능력치 업데이트
@@ -187,8 +187,6 @@ public class GameManager : MonoBehaviour
 
         characterMenuUI.SetAbility((int)playerHealthSystem.MaxHealth, (int)curentPlayerAttacks.power, curentPlayerAttacks.numberOfProjectilesPershot, (int)playerurentStats.CurrentStats.speed, (int)curentPlayerAttacks.speed); 
     }
-
-    //--------------------------------------------------------------------------------------
 
     public void RestartGame()
     {
@@ -208,6 +206,15 @@ public class GameManager : MonoBehaviour
 
         GameObject obj = rewards[idx];
         Instantiate(obj, spawnPostions[posIdx].position, Quaternion.identity); 
+    }
+
+    void CreateEquipReward()
+    {
+        int idx = Random.Range(0, equipRewards.Count);
+        int posIdx = Random.Range(0, spawnPostions.Count);
+
+        GameObject obj = equipRewards[idx];
+        Instantiate(obj, spawnPostions[posIdx].position, Quaternion.identity);
     }
 
     void UpgradeStatInit()

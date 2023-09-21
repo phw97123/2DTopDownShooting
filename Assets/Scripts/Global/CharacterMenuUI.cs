@@ -107,7 +107,6 @@ public class CharacterMenuUI : MonoBehaviour
         projectileCountText.text = projectileCount.ToString();
         speedText.text = speed.ToString();
         projectileSpeedText.text = projectileSpeed.ToString(); 
-
     }
 
     private void DisplayInventory()
