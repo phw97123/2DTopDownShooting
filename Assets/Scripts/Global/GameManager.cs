@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
                 {
                     waveSpawnPosCount = waveSpawnPosCount + 1 > spawnPostions.Count ? waveSpawnPosCount : waveSpawnPosCount + 1;
                     waveSpawnCount = 0;
-                    CreateEquipReward(); 
                 }
 
                 if (currentWaveIndex % 5 == 0)
@@ -119,6 +118,7 @@ public class GameManager : MonoBehaviour
                 if (currentWaveIndex % 3 == 0)
                 {
                     waveSpawnCount += 1;
+                    
                 }
 
                 for (int i = 0; i < waveSpawnPosCount; i++)
@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
                         yield return new WaitForSeconds(spawnInterval);
                     }
                 }
+                CreateEquipReward();
 
                 currentWaveIndex++;
             }
@@ -208,6 +209,7 @@ public class GameManager : MonoBehaviour
         Instantiate(obj, spawnPostions[posIdx].position, Quaternion.identity); 
     }
 
+    //장착아이템 보상
     void CreateEquipReward()
     {
         int idx = Random.Range(0, equipRewards.Count);
