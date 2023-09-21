@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
         playerStatsHandler = GameManager.instance.Player.GetComponent< CharacterStatsHandler>(); 
 
         menuUI = UIManager.instance.GetUIComponent<CharacterMenuUI>();
-        OnConfirmButtonPressed += HandleConfirmButtonPressed;
+        OnConfirmButtonPressed += HandleConfirmButtonPressed; //구독
 
         slots = new ItemSlot[uiSlots.Length];
 
@@ -100,41 +100,47 @@ public class Inventory : MonoBehaviour
 
     public void SelectItem(int index)
     {
+        //아이템 슬롯이 비어있다면
         if (slots[index].item == null)
             return;
 
         selectedItem = slots[index];
         selectedItemIndex = index;
 
-        menuUI.OnIsEquipPanel();
-
+        //장착확인 패널 텍스트 셋팅
         if (!uiSlots[selectedItemIndex].equipped)
             menuUI.SetIsEquipText(false); // 장착하지 않은 아이템을 누를 때
         else
             menuUI.SetIsEquipText(true); // 이미 장착된 아이템을 누를 때
 
+        //장착확인 패널
         menuUI.OnIsEquipPanel();
     }
 
+    //확인버튼 눌렀다면 함수 실행 
     private void HandleConfirmButtonPressed()
     {
+        //현재 장착 중인 아이템이 있고, 그 아이템이 이미 장착되어 있다면
         if (curEquipIndex != -1 && uiSlots[curEquipIndex].equipped)
         {
             UnEquip(curEquipIndex);
         }
 
-        if(curEquipIndex != selectedItemIndex)
+        //현재 선택한 아이템과 현재 장착 중인 아이템이 다른 경우
+        if (curEquipIndex != selectedItemIndex)
         {
             uiSlots[selectedItemIndex].equipped = true;
             curEquipIndex = selectedItemIndex;
             playerStatsHandler.AddStatModifier(slots[curEquipIndex].statsModifier);
             UpdateUI();
         }
-        else
+        else // 현재 선택한 아이템과 현재 장착 중인 아이템이 같은지 
         {
             UnEquip(curEquipIndex);
             curEquipIndex = -1; 
         }
+
+        //선택한 아이템 표시 
         SelectItem(selectedItemIndex);
     }
 

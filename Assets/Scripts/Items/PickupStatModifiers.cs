@@ -18,8 +18,6 @@ public class PickupStatModifiers : PickupItem
                 statsHandler.AddStatModifier(stat);
             else
                 Inventory.instance.AddItem(item, stat);
-
         }
-
     }
 }
